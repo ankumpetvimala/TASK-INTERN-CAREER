@@ -4,7 +4,7 @@ pipeline{
     agent any
     
     environment{
-        DOCKERHUB_USERNAME='Vimala'
+        DOCKERHUB_USERNAME='AnkumpetaVimala'
         APP_NAME='Task1-Interncareer'
         IMAGE_NAME="${DOCKERHUB_USERNAME}/${APP_NAME}"
 }
