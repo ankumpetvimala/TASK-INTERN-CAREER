@@ -1,0 +1,37 @@
+==================Installing Jenkins===============================
+
+a. Install Jenkins on a cloud server.
+
+Install JDK 8
+$ sudo apt update
+$ sudo install openjdk-8-jdk -y
+
+Install JDK11 on BuildMachine:
+$ apt install openjdk-11-jdk -y
+
+
+Add the repository key to the system:
+=======================================
+
+$ sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+
+
+Append the Debian package repository:
+==========================================
+
+$  echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+Install Jenkins Package
+=============================
+
+$ sudo apt-get update
+$ sudo apt-get install fontconfig openjdk-17-jre
+$ sudo apt-get install jenkins
+
+Status of Jenkins
+======================
+
+$ systemctl status jenkins | systemctl start jenkins
