@@ -69,6 +69,7 @@ iii. Deploy Stage: Package the application into a Docker container, push the con
 4. **Configure Docker**:
 a. Install Docker on the Jenkins server or a separate Docker host.
 
+
 ==================**DOCKER INSTALLATION**========================
 
 $ apt update
@@ -90,11 +91,6 @@ c. Set up Docker Hub or a private Docker registry for container storage.
 a. Configure Jenkins to trigger the pipeline automatically on code commits/merges to the Git
 repository.
 b. Add webhook or webhook-like functionality to receive notifications from the version control system.
-
-
-
-
-
 
 6. Test and Validate:
 a. Run the Jenkins pipeline manually or trigger it through a code commit to the Git repository.
