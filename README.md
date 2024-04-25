@@ -9,6 +9,19 @@ Create a CI/CD pipeline to automate the build, test, and deployment processes fo
 
 ## **System Requirements**: ##
 
+### 1 Launch an EC2 Instance : ###
+
+Log in to your AWS console.
+Navigate to EC2.
+Click "Launch Instance."
+Choose the "t2.micro" instance type.
+Configure other settings (VPC, security groups, key pair, etc.).
+
+Security groups Port - 8080 for Jenkins
+                Port - 3000 for Docker
+
+Launch the instance.
+
 ### 1 **Setup Jenkins**: ###
 
 ==================**JENKINS INSTALLATION**===============================
