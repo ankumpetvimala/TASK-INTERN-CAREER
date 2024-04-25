@@ -78,7 +78,16 @@ Retrieve the initial admin password from the Jenkins server:
 
 b. Configure Jenkins with necessary plugins for Git integration, pipeline support (e.g., Pipeline, PipelineGitHub, Pipeline Docker), and any additional tools required for your project.
 
+**Install Plugins**
+In Jenkins, go to "Manage Jenkins" > "Manage Plugins."
+Install necessary plugins (e.g., Pipeline, GitHub, Docker).
+
 c. Create a new Jenkins pipeline project.
+
+**Create New Jenkins Pipeline**
+Create a new Jenkins job.
+Select "Pipeline" as the job type.
+Write your Groovy script in the pipeline configuration.
 
 ### 3. Configure Version Control: ###
 ========================================
@@ -131,9 +140,39 @@ c. Set up Docker Hub or a private Docker registry for container storage.
 
 ### 6. Integrate Jenkins with GitHub/GitLab: ###
 
+**GitHub Integration:**
+
+Go to your GitHub repository.
+Under "Settings," select "Developer settings."
+Generate a classic token and copy it.
+
 a. Configure Jenkins to trigger the pipeline automatically on code commits/merges to the Git repository.
 
+**Configure Jenkins with GitHub Credentials:**
+
+In Jenkins, go to "Manage Jenkins" > "Configure System."
+Add your GitHub username and paste the token as the password.
+
+**DockerHub Integration:**
+
+Go to DockerHub.
+Generate an access token.
+
+**Configure DockerHub in Jenkins:**
+
+In Jenkins, go to "Manage Jenkins" > "Configure System."
+Add your DockerHub username and paste the token.
+
 b. Add webhook or webhook-like functionality to receive notifications from the version control system.
+
+**Adding Webhook in Github**
+Go to your GitHub repository.
+Under "Settings," select "Webhooks."
+Click on "Add webhook."
+Set the payload URL to your Jenkins server's URL followed by /github-webhook/.
+Select the events you want to trigger the webhook (e.g., Push events).
+Optionally, you can set up a secret and configure Jenkins to validate the webhook payload using this secret.
+Save your webhook configuration.
 
 ### 7. Test and Validate: ###
 a. Run the Jenkins pipeline manually or trigger it through a code commit to the Git repository.
