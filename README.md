@@ -1,13 +1,13 @@
-**Description**: Create a CI/CD pipeline to automate the build, test, and deployment processes for a web application using Jenkins, Docker, and GitHub/GitLab.
+**Description**: **Create a CI/CD pipeline to automate the build, test, and deployment processes for a web application using Jenkins, Docker, and GitHub/GitLab.**
 
-**Title**: Task 1: Setup Continuous Integration/Continuous Deployment (CI/CD) Pipeline
+**Title**: **Task 1: Setup Continuous Integration/Continuous Deployment (CI/CD) Pipeline**
 
 **Introduction**:
 Create a CI/CD pipeline to automate the build, test, and deployment processes for a web application using Jenkins, Docker, and GitHub/GitLab.
 
 **System Requirements**:
 
-1,**Setup Jenkins**:
+1 **Setup Jenkins**:
 
 
 
