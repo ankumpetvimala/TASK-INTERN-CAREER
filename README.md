@@ -54,4 +54,14 @@ b. Configure Jenkins with necessary plugins for Git integration, pipeline suppor
 
 c. Create a new Jenkins pipeline project.
 
+## 2. Configure Version Control: ##
+a. Set up a Git repository on GitHub or GitLab to host the web application code.
+b. Create a sample web application (e.g., HTML/CSS/JavaScript, Node.js, Python Flask, etc.) and push it to the Git repository.
+
+3. Create Jenkins Pipeline:
+a. Write a Jenkinsfile (declarative or scripted pipeline) to define the CI/CD stages:
+i. Build Stage: Pull the code from the Git repository, compile/build the application.
+ii. Test Stage: Run automated tests (unit tests, integration tests, etc.) on the built application.
+iii. Deploy Stage: Package the application into a Docker container, push the container to Docker
+Hub or a private registry, and deploy it to a test/staging environment.
 
