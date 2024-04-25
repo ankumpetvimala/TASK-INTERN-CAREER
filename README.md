@@ -77,16 +77,18 @@ a. Install Docker on the Jenkins server or a separate Docker host.
 
 
 b. Create a Dockerfile to define the container environment and dependencies for your web application.
+
 c. Set up Docker Hub or a private Docker registry for container storage.
 
 ### 5. Integrate Jenkins with GitHub/GitLab: ###
 
-a. Configure Jenkins to trigger the pipeline automatically on code commits/merges to the Git
-repository.
+a. Configure Jenkins to trigger the pipeline automatically on code commits/merges to the Git repository.
+
 b. Add webhook or webhook-like functionality to receive notifications from the version control system.
 
 ### 6. Test and Validate: ###
 a. Run the Jenkins pipeline manually or trigger it through a code commit to the Git repository.
+
 b. Monitor the CI/CD pipeline execution in Jenkins, check for build/test failures, and troubleshoot any
 issues
 
