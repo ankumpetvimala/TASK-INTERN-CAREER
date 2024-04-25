@@ -58,14 +58,18 @@ c. Create a new Jenkins pipeline project.
 ========================================
 
 a. Set up a Git repository on GitHub or GitLab to host the web application code.
+
 b. Create a sample web application (e.g., HTML/CSS/JavaScript, Node.js, Python Flask, etc.) and push it to the Git repository.
 
 ### 3. Create Jenkins Pipeline: ###
 ========================================
 
 a. Write a Jenkinsfile (declarative or scripted pipeline) to define the CI/CD stages:
+
 i. Build Stage: Pull the code from the Git repository, compile/build the application.
+
 ii. Test Stage: Run automated tests (unit tests, integration tests, etc.) on the built application.
+
 iii. Deploy Stage: Package the application into a Docker container, push the container to Docker Hub or a private registry, and deploy it to a test/staging environment.
 
 ### 4. Configure Docker: ###
@@ -75,6 +79,25 @@ a. Install Docker on the Jenkins server or a separate Docker host.
 
 ==================**DOCKER INSTALLATION**========================
 
+$ sudo apt update -y
+
+$ sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
+
+$ apt-cache policy docker-ce -y
+
+$ sudo apt install docker-ce -y
+
+$ sudo systemctl status docker | systemctl start docker
+
+$ sudo chmod 777 /var/run/docker.sock
+
+$ which docker
+
+$ docker info
 
 b. Create a Dockerfile to define the container environment and dependencies for your web application.
 
