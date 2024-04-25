@@ -69,7 +69,7 @@ $ systemctl status jenkins | systemctl start jenkins
 
 Open a web browser and navigate to [Jenkins login Page](http://3.80.133.177:8080/) 
 
-http://<your-ec2-public-ip>:8080/
+https://ec2-public-ip:8080/
 
 Retrieve the initial admin password from the Jenkins server:
 
