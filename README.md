@@ -1,36 +1,127 @@
-Description: Create a CI/CD pipeline to automate the build, test, and deployment processes for a web application using Jenkins, Docker, and GitHub/GitLab.
+**Description**: Create a CI/CD pipeline to automate the build, test, and deployment processes for a web application using Jenkins, Docker, and GitHub/GitLab.
 
-Title: Task 1: Setup Continuous Integration/Continuous Deployment (CI/CD) Pipeline
+**Title**: Task 1: Setup Continuous Integration/Continuous Deployment (CI/CD) Pipeline
 
-Introduction:
+**Introduction**:
 Create a CI/CD pipeline to automate the build, test, and deployment processes for a web application using Jenkins, Docker, and GitHub/GitLab.
 
-System Requirements:
-2.1 EFS File System Setup:
-Provision an Amazon EFS file system within the desired AWS region.
-Define the appropriate storage capacity based on the expected file system usage and growth.
-Configure the EFS file system to utilize the desired availability zones to ensure high availability and durability.
-Enable file system encryption for data security.
-Determine the performance mode (general purpose or Max I/O) based on workload requirements.
-Establish file system lifecycle policies for automated data management.
-2.2 EC2 Instances:
-Launch and configure one or more EC2 instances within the same VPC as the EFS file system.
-Establish proper network connectivity and security settings between the EC2 instances and the EFS file system.
-Ensure that the EC2 instances have the necessary permissions to access the EFS file system.
-Implement appropriate instance types and sizes based on the workload demands.
-2.3 Mounting and Access Permissions:
-Mount the EFS file system onto the EC2 instances using the necessary mount targets.
-Implement a consistent and reliable method for mounting the file system during instance boot-up.
-Configure access permissions to enable proper file sharing and collaboration.
-Define user-level access controls and roles to manage read, write, and execute permissions for files and directories.
-Implement security best practices to restrict unauthorized access to the file system.
-2.4 Scalability and Elasticity:
-Design the file storage system with scalability in mind, ensuring it can handle increased workload and data growth.
-Implement auto-scaling capabilities for both the EC2 instances and the EFS file system to accommodate changing demands.
-Monitor the system's performance and utilization to proactively adjust resources as needed.
-Utilize AWS services such as CloudWatch, CloudFormation, or AWS CLI to automate scalability and elasticity.
-2.5 Testing and Validation:
-Develop a comprehensive testing strategy to ensure the file storage system functions as intended.
-Conduct performance tests to evaluate the system's ability to handle various file sizes, concurrent users, and workloads.
-Perform integration tests to verify seamless file sharing across multiple instances.
-Implement appropriate monitoring and logging mechanisms to identify and resolve potential issues.
+**System Requirements**:
+
+1,**Setup Jenkins**:
+
+
+
+#!/bin/bash sudo apt update -y
+sudo apt upgrade -y
+sudo apt install openjdk-17-jre -y
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+/usr/share/keyrings/jenkins-keyring.asc > /dev/null
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+https://pkg.jenkins.io/debian-stable binary/ | sudo tee
+/etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update -y
+sudo apt-get install jenkins -y
+
+==================**Installing Jenkins**===============================
+
+a. Install Jenkins on a cloud server.
+
+Install JDK 8
+$ sudo apt update
+$ sudo install openjdk-8-jdk -y
+
+Install JDK11 on BuildMachine:
+$ apt install openjdk-11-jdk -y
+
+
+Add the repository key to the system:
+=======================================
+
+$ sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+
+
+Append the Debian package repository:
+==========================================
+
+$  echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+Install Jenkins Package
+=============================
+
+$ sudo apt-get update
+$ sudo apt-get install fontconfig openjdk-17-jre
+$ sudo apt-get install jenkins
+
+Status of Jenkins
+======================
+
+$ systemctl status jenkins | systemctl start jenkins
+
+
+b. Configure Jenkins with necessary plugins for Git integration, pipeline support (e.g., Pipeline, PipelineGitHub, Pipeline Docker), and any additional tools required for your project.
+
+c. Create a new Jenkins pipeline project.
+
+2. **Configure Version Control**:
+a. Set up a Git repository on GitHub or GitLab to host the web application code.
+b. Create a sample web application (e.g., HTML/CSS/JavaScript, Node.js, Python Flask, etc.) and push it to the Git repository
+
+
+3. **Create Jenkins Pipeline**:
+a. Write a Jenkinsfile (declarative or scripted pipeline) to define the CI/CD stages:
+i. Build Stage: Pull the code from the Git repository, compile/build the application.
+ii. Test Stage: Run automated tests (unit tests, integration tests, etc.) on the built application.
+iii. Deploy Stage: Package the application into a Docker container, push the container to DockerHub or a private registry, and deploy it to a test/staging environment
+
+
+4. **Configure Docker**:
+a. Install Docker on the Jenkins server or a separate Docker host.
+
+==================**DOCKER INSTALLATION**========================
+
+$ apt update
+$ sudo apt update -y
+$ sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
+$ apt-cache policy docker-ce -y
+$ sudo apt install docker-ce -y
+$ sudo systemctl status docker | systemctl start docker
+$ sudo chmod 777 /var/run/docker.sock
+$ which docker
+$ docker info
+
+b. Create a Dockerfile to define the container environment and dependencies for your web application.
+c. Set up Docker Hub or a private Docker registry for container storage.
+
+5. Integrate Jenkins with GitHub/GitLab:
+a. Configure Jenkins to trigger the pipeline automatically on code commits/merges to the Git
+repository.
+b. Add webhook or webhook-like functionality to receive notifications from the version control system.
+
+
+
+
+
+
+6. Test and Validate:
+a. Run the Jenkins pipeline manually or trigger it through a code commit to the Git repository.
+b. Monitor the CI/CD pipeline execution in Jenkins, check for build/test failures, and troubleshoot any issues
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
