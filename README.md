@@ -11,7 +11,7 @@ Create a CI/CD pipeline to automate the build, test, and deployment processes fo
 
 ### 1 **Setup Jenkins**: ###
 
-==================**Installing Jenkins**===============================
+==================**JENKINS INSTALLATION**===============================
 
 a. Install Jenkins on a cloud server.
 
@@ -74,6 +74,18 @@ iii. Deploy Stage: Package the application into a Docker container, push the con
 a. Install Docker on the Jenkins server or a separate Docker host.
 
 ==================**DOCKER INSTALLATION**========================
+
+apt update
+$ sudo apt update -y
+$ sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
+$ apt-cache policy docker-ce -y
+$ sudo apt install docker-ce -y
+$ sudo systemctl status docker | systemctl start docker
+$ sudo chmod 777 /var/run/docker.sock
+$ which docker
+$ docker info
 
 
 
