@@ -25,7 +25,7 @@ Security groups Port - 8080 for Jenkins , Port - 3000 for Docker
 
 Launch the instance.
 
-### 1 **Setup Jenkins**: ###
+### 2 **Setup Jenkins**: ###
 
 ==================**JENKINS INSTALLATION**===============================
 
@@ -65,19 +65,27 @@ $ sudo apt-get install jenkins
 
 $ systemctl status jenkins | systemctl start jenkins
 
+### 3. Acess Jenkins ###
+
+Open a web browser and navigate to [](http://<your-ec2-public-ip>:8080)
+
+Retrieve the initial admin password from the Jenkins server:
+
+### sudo cat /var/lib/jenkins/secrets/initialAdminPassword ###
+
 
 b. Configure Jenkins with necessary plugins for Git integration, pipeline support (e.g., Pipeline, PipelineGitHub, Pipeline Docker), and any additional tools required for your project.
 
 c. Create a new Jenkins pipeline project.
 
-### 2. Configure Version Control: ###
+### 3. Configure Version Control: ###
 ========================================
 
 a. Set up a Git repository on GitHub or GitLab to host the web application code.
 
 b. Create a sample web application (e.g., HTML/CSS/JavaScript, Node.js, Python Flask, etc.) and push it to the Git repository.
 
-### 3. Create Jenkins Pipeline: ###
+### 4. Create Jenkins Pipeline: ###
 ========================================
 
 a. Write a Jenkinsfile (declarative or scripted pipeline) to define the CI/CD stages:
@@ -88,7 +96,7 @@ ii. Test Stage: Run automated tests (unit tests, integration tests, etc.) on the
 
 iii. Deploy Stage: Package the application into a Docker container, push the container to Docker Hub or a private registry, and deploy it to a test/staging environment.
 
-### 4. Configure Docker: ###
+### 5. Configure Docker: ###
 ================================
 
 a. Install Docker on the Jenkins server or a separate Docker host.
@@ -119,13 +127,13 @@ b. Create a Dockerfile to define the container environment and dependencies for 
 
 c. Set up Docker Hub or a private Docker registry for container storage.
 
-### 5. Integrate Jenkins with GitHub/GitLab: ###
+### 6. Integrate Jenkins with GitHub/GitLab: ###
 
 a. Configure Jenkins to trigger the pipeline automatically on code commits/merges to the Git repository.
 
 b. Add webhook or webhook-like functionality to receive notifications from the version control system.
 
-### 6. Test and Validate: ###
+### 7. Test and Validate: ###
 a. Run the Jenkins pipeline manually or trigger it through a code commit to the Git repository.
 
 b. Monitor the CI/CD pipeline execution in Jenkins, check for build/test failures, and troubleshoot any
