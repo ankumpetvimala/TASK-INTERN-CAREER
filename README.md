@@ -184,15 +184,23 @@ Add your DockerHub username and paste the token.
 b. Add webhook or webhook-like functionality to receive notifications from the version control system.
 
 **Adding Webhook in Github**
+
 Go to your GitHub repository.
+
 Under "Settings," select "Webhooks."
+
 Click on "Add webhook."
+
 Set the payload URL to your Jenkins server's URL followed by /github-webhook/.
+
 Select the events you want to trigger the webhook (e.g., Push events).
+
 Optionally, you can set up a secret and configure Jenkins to validate the webhook payload using this secret.
+
 Save your webhook configuration.
 
 ### 8. Test and Validate: ###
+
 a. Run the Jenkins pipeline manually or trigger it through a code commit to the Git repository.
 
 b. Monitor the CI/CD pipeline execution in Jenkins, check for build/test failures, and troubleshoot any issues
