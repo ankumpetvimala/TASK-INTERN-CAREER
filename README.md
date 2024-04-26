@@ -86,13 +86,23 @@ c. Create a new Jenkins pipeline project.
 
 **Create New Jenkins Pipeline**
 Create a new Jenkins job.
+
 Select "Pipeline" as the job type.
+
 Write your Groovy script in the pipeline configuration.
+
 
 ### 4. Configure Version Control: ###
 ========================================
 
 a. Set up a Git repository on GitHub or GitLab to host the web application code.
+
+The first step in setting up a CI/CD pipeline is to store your source code in a repository. This will allow you to manage and track changes to your code over time.
+
+If you haven't already, create a repository for your web application in a Git-based repository management platform, such as GitHub or GitLab. Make sure to push your latest code changes to the repository.
+
+gitclone https://github.com/ankumpetvimala/TASK-INTERN-CAREER.git
+
 
 b. Create a sample web application (e.g., HTML/CSS/JavaScript, Node.js, Python Flask, etc.) and push it to the Git repository.
 
