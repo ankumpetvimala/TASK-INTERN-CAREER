@@ -2,7 +2,7 @@ Jenkins pipeline
 
 pipeline{
 
-	agent {label 'ubuntu'}
+	agent {}
 
 	environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
@@ -20,7 +20,7 @@ pipeline{
 		stage('Build') {
 
 			steps {
-				sh 'docker build -t ankumpetavimala/nodeapp_test:latest .'
+				sh 'docker build -t ankumpetavimala/TASK-INTERN-CAREER:latest .'
 			}
 		}
 
@@ -34,7 +34,7 @@ pipeline{
 		stage('Push') {
 
 			steps {
-				sh 'docker push ankumpetavimala/nodeapp_test:latest'
+				sh 'docker push ankumpetavimala/TASK-INTERN-CAREER:latest'
 			}
 		}
 	}
