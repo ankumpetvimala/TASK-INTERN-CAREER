@@ -1,11 +1,48 @@
 Jenkins pipeline 
 
 pipeline{
-    agent any
-    
-    environment{
-        DOCKERHUB_USERNAME='AnkumpetaVimala'
-        APP_NAME='Task1-Interncareer'
-        IMAGE_NAME="${DOCKERHUB_USERNAME}/${APP_NAME}"
-}
+
+	agent {label 'ubuntu'}
+
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+	}
+
+	stages {
+	    
+	    stage('gitclone') {
+
+			steps {
+				git 'https://github.com/ankumpetvimala/TASK-INTERN-CAREER.git'
+			}
+		}
+
+		stage('Build') {
+
+			steps {
+				sh 'docker build -t ankumpetavimala/nodeapp_test:latest .'
+			}
+		}
+
+		stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+				sh 'docker push ankumpetavimala/nodeapp_test:latest'
+			}
+		}
+	}
+
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
+
 }
