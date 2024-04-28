@@ -7,6 +7,21 @@
 ## **Introduction**: ##
 Create a CI/CD pipeline to automate the build, test, and deployment processes for a web application using Jenkins, Docker, and GitHub/GitLab.
 
+
+![interncareer](https://github.com/ankumpetvimala/TASK-INTERN-CAREER/assets/155473936/5f0e4024-3ee9-4f0b-afd0-0277482aac08)
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## **System Requirements**: ##
 
 ### 1 Launch an EC2 Instance : ###
@@ -208,6 +223,7 @@ b. Monitor the CI/CD pipeline execution in Jenkins, check for build/test failure
 ### Conclusion ###
 
 With a CI/CD pipeline in place, you can ensure that changes to your web application are integrated and deployed quickly and with high quality. By automating the build, test, and deployment process, you can reduce the risk of bugs and downtime and improve the overall stability of your application.
+
 
 
 
