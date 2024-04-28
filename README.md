@@ -10,18 +10,6 @@ Create a CI/CD pipeline to automate the build, test, and deployment processes fo
 
 ![interncareer](https://github.com/ankumpetvimala/TASK-INTERN-CAREER/assets/155473936/5f0e4024-3ee9-4f0b-afd0-0277482aac08)
 
-
-
-
-
-
-
-
-
-
-
-
-
 ## **System Requirements**: ##
 
 ### 1 Launch an EC2 Instance : ###
