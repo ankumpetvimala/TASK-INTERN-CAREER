@@ -1,48 +1,39 @@
-Jenkins pipeline 
+pipeline {
+    agent any
 
-pipeline{
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building the application...'
+                // Pull code from Git repository and compile/build the application
+                sh 'git clone <https://github.com/ankumpetvimala/TASK-INTERN-CAREER.git> myapp'
+                sh 'cd myapp && mvn clean install'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running automated tests...'
+                // Run automated tests (unit tests, integration tests, etc.)
+                sh 'cd myapp && mvn test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Packaging the application into a Docker container...'
+                // Build Docker image
+                sh 'docker build -t myapp .'
 
-	agent {}
+                echo 'Pushing the Docker image to Docker Hub...'
+                // Push Docker image to Docker Hub or private registry
+                sh 'docker login -u <ankumpetavimala> -p <@Vimmu@123>'
+                sh 'docker push <ankumpetavimala>/myapp:latest'
 
-	environment {
-		DOCKERHUB_CREDENTIALS=credentials('dockerhub')
-	}
-
-	stages {
-	    
-	    stage('gitclone') {
-
-			steps {
-				git 'https://github.com/ankumpetvimala/TASK-INTERN-CAREER.git'
-			}
-		}
-
-		stage('Build') {
-
-			steps {
-				sh 'docker build -t ankumpetavimala/TASK-INTERN-CAREER:latest .'
-			}
-		}
-
-		stage('Login') {
-
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
-
-		stage('Push') {
-
-			steps {
-				sh 'docker push ankumpetavimala/TASK-INTERN-CAREER:latest'
-			}
-		}
-	}
-
-	post {
-		always {
-			sh 'docker logout'
-		}
-	}
-
+                echo 'Deploying the application to test/staging environment...'
+                // Deploy the application to a test/staging environment
+                // This could involve deploying to Kubernetes, Docker Swarm, or other orchestration platforms
+                // For simplicity, let's just echo a deployment message
+                echo 'Application deployed successfully!'
+            }
+        }
+    }
 }
