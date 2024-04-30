@@ -24,7 +24,7 @@ Choose the "t2.micro" instance type.
 
 Configure other settings (VPC, security groups, key pair, etc.).
 
-Security groups Port - 8080 for Jenkins , Port - 3000 ,8090 for Docker 
+Security groups Port - 8080 for Jenkins , Port - 8090 for Docker 
 
 Launch the instance.
 
@@ -70,7 +70,7 @@ $ systemctl status jenkins | systemctl start jenkins
 
 ### 3. Acess Jenkins ###
 
-Open a web browser and navigate to [Jenkins login Page](http://3.80.133.177:8080/) 
+Open a web browser and navigate to Jenkins login page (http://publicip:8080/) 
 
 https://ec2-public-ip:8080/
 
