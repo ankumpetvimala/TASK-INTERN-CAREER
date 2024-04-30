@@ -1,38 +1,25 @@
 pipeline {
     agent any
-
+    
     stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'master', url: 'https://github.com/ankumpetvimala/TASK-INTERN-CAREER.git'
+            }
+        }
         stage('Build') {
             steps {
-                echo 'Building the application...'
-                // Pull code from Git repository and compile/build the application
-                sh 'git clone <https://github.com/ankumpetvimala/TASK-INTERN-CAREER.git> myapp'
-                sh 'cd myapp && mvn clean install'
+                // Your build steps here
             }
         }
         stage('Test') {
             steps {
-                echo 'Running automated tests...'
-                // Run automated tests (unit tests, integration tests, etc.)
-                sh 'cd myapp && mvn test'
+                // Your test steps here
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Packaging the application into a Docker container...'
-                // Build Docker image
-                sh 'docker build -t myapp .'
-
-                echo 'Pushing the Docker image to Docker Hub...'
-                // Push Docker image to Docker Hub or private registry
-                sh 'docker login -u <ankumpetavimala> -p <@Vimmu@123>'
-                sh 'docker push <ankumpetavimala>/myapp:latest'
-
-                echo 'Deploying the application to test/staging environment...'
-                // Deploy the application to a test/staging environment
-                // This could involve deploying to Kubernetes, Docker Swarm, or other orchestration platforms
-                // For simplicity, let's just echo a deployment message
-                echo 'Application deployed successfully!'
+                // Your deployment steps here
             }
         }
     }
