@@ -1,4 +1,4 @@
-## TASK1-INTERN CAREER ##
+## INTERN CAREER TASK-1 ##
 
 **Description**: Create a CI/CD pipeline to automate the build, test, and deployment processes for a web application using Jenkins, Docker, and GitHub/GitLab.
 
