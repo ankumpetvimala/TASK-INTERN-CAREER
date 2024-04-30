@@ -1,25 +1,29 @@
 pipeline {
     agent any
-    
-    stages {
-        stage('Checkout') {
+        stages {
+        stage('git clone') {
             steps {
-                git branch: 'master', url: 'https://github.com/ankumpetvimala/TASK-INTERN-CAREER.git'
-            }
+                // Clone the Git repository
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/ankumpetvimala/TASK-INTERN-CAREER.git'
+                }
         }
         stage('Build') {
             steps {
-                // Your build steps here
+                // Build the Docker image
+                    'docker build -t myapp .'
             }
         }
         stage('Test') {
             steps {
-                // Your test steps here
+                // Run automated tests
+                // You can replace this command with the actual command to run your tests
+                   'docker run myapp npm test'
             }
         }
         stage('Deploy') {
             steps {
-                // Your deployment steps here
+                // Push the Docker image to the registry
+                    'docker push myapp:latest'
             }
         }
     }
