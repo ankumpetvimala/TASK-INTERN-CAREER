@@ -24,7 +24,7 @@ Choose the "t2.micro" instance type.
 
 Configure other settings (VPC, security groups, key pair, etc.).
 
-Security groups Port - 8080 for Jenkins , Port - 3000 for Docker 
+Security groups Port - 8080 for Jenkins , Port - 3000 ,8090 for Docker 
 
 Launch the instance.
 
