@@ -91,7 +91,7 @@ Install necessary plugins (e.g., Pipeline, GitHub, Docker).
 
 c. Create a new Jenkins pipeline project.
 
-**Create New Jenkins Pipeline**
+**Create Jenkins Pipeline**
 
 Create a new Jenkins job.
 
