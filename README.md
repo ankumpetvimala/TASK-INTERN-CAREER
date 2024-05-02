@@ -70,7 +70,7 @@ $ systemctl status jenkins | systemctl start jenkins
 
 ### 3. Acess Jenkins ###
 
-Open a web browser and navigate to Jenkins login page (http://publicip:8080/) 
+Open a web browser and navigate to Jenkins login page 
 
 https://ec2-public-ip:8080/
 
