@@ -36,9 +36,11 @@ a. Install Jenkins on a cloud server.
 
 Install JDK 8
 $ sudo apt update
+
 $ sudo install openjdk-8-jdk -y
 
 Install JDK11 on BuildMachine:
+
 $ apt install openjdk-11-jdk -y
 
 
