@@ -16,7 +16,6 @@ pipeline {
         stage('Test') {
             steps {
                 // Run automated tests
-                // You can replace this command with the actual command to run your tests
                    'docker run myapp npm test'
             }
         }
