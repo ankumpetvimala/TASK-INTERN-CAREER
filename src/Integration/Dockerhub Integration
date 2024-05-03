@@ -1,5 +1,5 @@
 **Dockerhub Integration**
 
 Go to DockerHub.
-click on settings
+click on security.
 Generate an access token.
