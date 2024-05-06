@@ -1,0 +1,353 @@
+Task 1: Setup Continuous Integration/Continuous Deployment (CI/CD) Pipeline
+
+Objective:
+
+Create a CI/CD pipeline to automate the build, test,and deployment processes for a web application
+using Jenkins, Docker, and GitHub/GitLab.
+
+1,Setup Jenkins:
+
+
+==================Installing Jenkins===============================
+
+a. Install Jenkins on a cloud server.
+
+Install JDK 8
+$ sudo apt update
+$ sudo install openjdk-8-jdk -y
+
+Install JDK11 on BuildMachine:
+$ apt install openjdk-11-jdk -y
+
+
+Add the repository key to the system:
+=======================================
+
+$ sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+
+
+Append the Debian package repository:
+==========================================
+
+$  echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+Install Jenkins Package
+=============================
+
+$ sudo apt-get update
+$ sudo apt-get install fontconfig openjdk-17-jre
+$ sudo apt-get install jenkins
+
+Status of Jenkins
+======================
+
+$ systemctl status jenkins | systemctl start jenkins
+
+
+b. Configure Jenkins with necessary plugins for Git integration, pipeline support (e.g., Pipeline, PipelineGitHub, Pipeline Docker), and any additional tools required for your project.
+
+c. Create a new Jenkins pipeline project.
+
+2. Configure Version Control:
+a. Set up a Git repository on GitHub or GitLab to host the web application code.
+
+Here's a brief guide to creating a sample web application and pushing it to a Git repository:
+
+1 Choose a Technology Stack:
+Decide on the technology stack for your web application. For a simple example, you could use HTML/CSS/JavaScript for the frontend and Node.js for the backend.
+
+2 Set Up Your Development Environment:
+Install Node.js and npm (Node Package Manager) on your machine if you haven't already.
+
+3 Create Your Web Application:
+
+Create a new directory for your project and navigate into it.
+Create HTML, CSS, and JavaScript files for your frontend in the project directory.
+Create a Node.js file for your backend logic (e.g., server.js) in the same directory.
+Initialize a Git Repository:
+Run git init in the project directory to initialize a new Git repository.
+
+4 Add Your Files to the Repository:
+Use git add . to stage all files in the directory for committing.
+
+5 Commit Your Changes:
+Commit your changes with a descriptive message using git commit -m "Initial commit".
+
+6 Create a Remote Repository:
+Go to GitHub or GitLab and create a new repository for your project.
+
+7 Link Your Local Repository to the Remote Repository:
+Use git remote add origin <remote repository URL> to add the remote repository as the origin.
+
+8 Push Your Changes to the Remote Repository:
+Push your committed changes to the remote repository with git push -u origin master.
+
+9 Verify Your Changes:
+Visit your remote repository on the Git hosting service to verify that your files have been pushed successfully.
+
+That's it! You've created a sample web application and pushed it to a Git repository. 
+You can continue to develop your application locally and push changes to the repository as needed.
+
+
+b. Create a sample web application (e.g., HTML/CSS/JavaScript, Node.js, Python Flask, etc.) and
+push it to the Git repository.
+
+
+HTML
+
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Web App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <p>This is a sample web application.</p>
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Intern Career</h1>
+
+<p><a href="https://studio.openweaver.com/apps/preview/vimalaankumpeta/Intern%20career/home">Visit Intern Carrer!</a></p>
+
+</body>
+</html>
+
+CSS
+
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+
+
+Javascript
+
+// server.js
+const http = require('http');
+const fs = require('fs');
+const path = require('path');
+
+const server = http.createServer((req, res) => {
+    let filePath = '.' + req.url;
+    if (filePath === './') {
+        filePath = './index.html';
+    }
+
+    const extname = String(path.extname(filePath)).toLowerCase();
+    const contentType = {
+        '.html': 'text/html',
+        '.css': 'text/css',
+        '.js': 'text/javascript'
+    }[extname] || 'application/octet-stream';
+
+    fs.readFile(filePath, (err, content) => {
+        if (err) {
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            res.end('404 Not Found');
+        } else {
+            res.writeHead(200, { 'Content-Type': contentType });
+            res.end(content, 'utf-8');
+        }
+    });
+});
+
+const PORT = process.env.PORT || 8090;
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+
+3. Create Jenkins Pipeline:
+a. Write a Jenkinsfile (declarative or scripted pipeline) to define the CI/CD stages:
+i. Build Stage: Pull the code from the Git repository, compile/build the application.
+ii. Test Stage: Run automated tests (unit tests, integration tests, etc.) on the built application.
+iii. Deploy Stage: Package the application into a Docker container, push the container to Docker
+Hub or a private registry, and deploy it to a test/staging environment
+
+Here's a Jenkinsfile for a declarative pipeline that defines the CI/CD stages:
+
+pipeline {
+    agent any
+        stages {
+        stage('git clone') {
+            steps {
+                // Clone the Git repository
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/ankumpetvimala/TASK-INTERN-CAREER.git'
+                }
+        }
+        stage('Build') {
+            steps {
+                // Build the Docker image
+                    'docker build -t myapp .'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Run automated tests
+                   'docker run myapp npm test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Push the Docker image to the registry
+                    'docker push myapp:latest'
+            }
+        }
+    }
+}
+
+This Jenkinsfile defines three stages:
+
+Build: Pulls the code from the Git repository and compiles/builds the application.
+Test: Runs automated tests (unit tests, integration tests, etc.) on the built application.
+Deploy: Package the application into a Docker container, push the container to Docker Hub or a private registry, 
+and deploy it to a test/staging environment.
+
+4. Configure Docker:
+a. Install Docker on the Jenkins server or a separate Docker host.
+
+==================DOCKER INSTALLATION========================
+
+$ sudo apt update -y
+
+$ sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" -y
+
+$ apt-cache policy docker-ce -y
+
+$ sudo apt install docker-ce -y
+
+$ sudo systemctl status docker | systemctl start docker
+
+$ sudo chmod 777 /var/run/docker.sock
+
+$ which docker
+
+$ docker info
+
+b. Create a Dockerfile to define the container environment and dependencies for your web application.
+c. Set up Docker Hub or a private Docker registry for container storage.
+
+Step 1 - Create a new directory mkdir myapp
+       cd myapp   
+
+Step 2 - Create a file called "index.html" echo "Hello, world!" ＞ index.html
+
+Step 3 - Create a file named Dockerfile  touch Dockerfile
+
+Step 4 - Open the "Dockerfile" file in a text editor and add the following lines:
+
+FROM nginx
+COPY index.html /usr/share/nginx/html
+
+This Dockerfile defines a new Docker image that 
+- uses the official nginx image as a base
+- then copy the index.html file to the appropriate location in the image
+
+A Dockerfile is a text file with instructions to build a Docker Image
+When we run a Dockerfile, Docker image is created
+When we run the docker image, containers are created
+
+Step 5 - Start docker & Build docker image from dockerfile 
+docker build -t myapp .
+This command builds a new Docker image with the tag "myapp" using the Dockerfile in the current directory.
+
+Step 6 - Run docker container from the image   
+docker run -p 8090:80 myapp
+This tells Docker to run the myapp container and map port 8090 on your local machine to port 80 inside the container
+
+Step 7 - Access the app
+Open a web browser and navigate to http://localhost:8090 to see the index.html displayed in your web browser.
+
+5. Integrate Jenkins with GitHub/GitLab:
+a. Configure Jenkins to trigger the pipeline automatically on code commits/merges to the Git
+repository.
+b. Add webhook or webhook-like functionality to receive notifications from the version control system.
+
+=========Integrate Jenkins with GitHub/GitLab:============
+GitHub Integration:
+
+Go to your GitHub repository.
+
+Under "Settings," select "Developer settings."
+
+Generate a classic token and copy it.
+
+----------------Configure Jenkins with GitHub Credentials:----------
+
+In Jenkins, go to "Manage Jenkins" > "Configure System."
+
+Add your GitHub username and paste the token as the password.
+
+=================DockerHub Integration:================================
+
+Go to DockerHub.
+
+Generate an access token.
+
+Configure DockerHub in Jenkins:
+
+In Jenkins, go to "Manage Jenkins" > "Configure System."
+
+Add your DockerHub username and paste the token.
+
+b. Add webhook or webhook-like functionality to receive notifications from the version control system.
+
+=====================Adding Webhook in Github==============================
+
+Go to your GitHub repository.
+
+Under "Settings," select "Webhooks."
+
+Click on "Add webhook."
+
+Set the payload URL to your Jenkins server's URL followed by /github-webhook/.
+
+Select the events you want to trigger the webhook (e.g., Push events).
+
+Optionally, you can set up a secret and configure Jenkins to validate the webhook payload using this secret.
+
+Save your webhook configuration.
+
+6. Test and Validate:
+a. Run the Jenkins pipeline manually or trigger it through a code commit to the Git repository.
+b. Monitor the CI/CD pipeline execution in Jenkins, check for build/test failures, and troubleshoot any issues
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
